@@ -16,7 +16,7 @@ name: Exodist-Util
 provides:
   Exodist::Util:
     file: lib/Exodist/Util.pm
-    version: 0.003
+    version: 0.004
   Exodist::Util::Accessors:
     file: lib/Exodist/Util/Accessors.pm
   Exodist::Util::Alias:
@@ -38,4 +38,4 @@ resources:
   homepage: http://open-exodus.net/projects/Exodist-Util
   license: http://dev.perl.org/licenses/
   repository: http://github.com/exodist/Exodist-Util
-version: 0.003
+version: 0.004
