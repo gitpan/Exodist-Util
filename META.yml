@@ -7,7 +7,7 @@ build_requires:
   Test::More: 0.88
 configure_requires:
   Module::Build: 0.36
-generated_by: 'Module::Build version 0.3607'
+generated_by: 'Module::Build version 0.3603'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -16,7 +16,7 @@ name: Exodist-Util
 provides:
   Exodist::Util:
     file: lib/Exodist/Util.pm
-    version: 0.005
+    version: 0.006
   Exodist::Util::Accessors:
     file: lib/Exodist/Util/Accessors.pm
   Exodist::Util::Alias:
@@ -29,7 +29,7 @@ provides:
     file: lib/Exodist/Util/Sub.pm
 requires:
   Devel::BeginLift: 0.001003
-  Exporter::Declare: 0.100
+  Exporter::Declare: 0.102
   List::Util: 0
   Scalar::Util: 0
   perl: 5.008
@@ -38,4 +38,4 @@ resources:
   homepage: http://open-exodus.net/projects/Exodist-Util
   license: http://dev.perl.org/licenses/
   repository: http://github.com/exodist/Exodist-Util
-version: 0.005
+version: 0.006
