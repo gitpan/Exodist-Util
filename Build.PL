@@ -10,11 +10,12 @@ my $build = Module::Build->new(
     dist_author => 'Chad Granum <exodist7@gmail.com>',
     create_readme => 1,
     requires => {
-        'perl'              => 5.008,
-        'Exporter::Declare' => '0.102',
-        'Scalar::Util'      => 0,
-        'List::Util'        => 0,
-        'Devel::BeginLift'  => '0.001003',
+        'perl'                   => 5.008,
+        'Exporter::Declare'      => '0.102',
+        'Devel::Declare::Parser' => '0.017',
+        'Scalar::Util'           => 0,
+        'List::Util'             => 0,
+        'Devel::BeginLift'       => '0.001003',
     },
     build_requires => {
         'Test::More'      => 0.88,
