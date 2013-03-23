@@ -1,0 +1,80 @@
+{
+   "abstract" : "Exodist's collection of utility functions",
+   "author" : [
+      "Chad Granum <exodist7@gmail.com>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120630",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Exodist-Util",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::Exception" : "0",
+            "Test::More" : "0.88"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.40"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Devel::Declare::Parser" : "0.017",
+            "Exporter::Declare" : "0.107",
+            "Exporter::Declare::Magic" : "0.107",
+            "Hash::FieldHash" : "0.09",
+            "List::Util" : "0",
+            "Scalar::Util" : "0",
+            "perl" : "5.008"
+         }
+      }
+   },
+   "provides" : {
+      "Exodist::Util" : {
+         "file" : "lib/Exodist/Util.pm",
+         "version" : "0.008"
+      },
+      "Exodist::Util::Accessors" : {
+         "file" : "lib/Exodist/Util/Accessors.pm",
+         "version" : 0
+      },
+      "Exodist::Util::Alias" : {
+         "file" : "lib/Exodist/Util/Alias.pm",
+         "version" : 0
+      },
+      "Exodist::Util::Loader" : {
+         "file" : "lib/Exodist/Util/Loader.pm",
+         "version" : 0
+      },
+      "Exodist::Util::Package" : {
+         "file" : "lib/Exodist/Util/Package.pm",
+         "version" : 0
+      },
+      "Exodist::Util::Sub" : {
+         "file" : "lib/Exodist/Util/Sub.pm",
+         "version" : 0
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "http://github.com/exodist/Exodist-Util/issues"
+      },
+      "homepage" : "http://open-exodus.net/projects/Exodist-Util",
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ],
+      "repository" : {
+         "url" : "http://github.com/exodist/Exodist-Util"
+      }
+   },
+   "version" : "0.008"
+}

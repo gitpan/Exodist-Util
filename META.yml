@@ -6,8 +6,9 @@ build_requires:
   Test::Exception: 0
   Test::More: 0.88
 configure_requires:
-  Module::Build: 0.36
-generated_by: 'Module::Build version 0.3603'
+  Module::Build: 0.40
+dynamic_config: 1
+generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120630'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -16,21 +17,27 @@ name: Exodist-Util
 provides:
   Exodist::Util:
     file: lib/Exodist/Util.pm
-    version: 0.007
+    version: 0.008
   Exodist::Util::Accessors:
     file: lib/Exodist/Util/Accessors.pm
+    version: 0
   Exodist::Util::Alias:
     file: lib/Exodist/Util/Alias.pm
+    version: 0
   Exodist::Util::Loader:
     file: lib/Exodist/Util/Loader.pm
+    version: 0
   Exodist::Util::Package:
     file: lib/Exodist/Util/Package.pm
+    version: 0
   Exodist::Util::Sub:
     file: lib/Exodist/Util/Sub.pm
+    version: 0
 requires:
-  Devel::BeginLift: 0.001003
   Devel::Declare::Parser: 0.017
-  Exporter::Declare: 0.102
+  Exporter::Declare: 0.107
+  Exporter::Declare::Magic: 0.107
+  Hash::FieldHash: 0.09
   List::Util: 0
   Scalar::Util: 0
   perl: 5.008
@@ -39,4 +46,4 @@ resources:
   homepage: http://open-exodus.net/projects/Exodist-Util
   license: http://dev.perl.org/licenses/
   repository: http://github.com/exodist/Exodist-Util
-version: 0.007
+version: 0.008

@@ -2,32 +2,38 @@ package Exodist::Util::Alias;
 use strict;
 use warnings;
 
-use Exporter::Declare '-magic';
+use Exporter::Declare::Magic;
 use Exodist::Util::Package qw/ inject_sub /;
 
-gen_default_export( qw/alias begin/, sub {
-    my ( $exporting_class, $importing_class ) = @_;
+gen_default_export(
+    qw/alias begin/,
     sub {
-        for my $package ( @_ ) {
-            eval "require $package; 1" || die $@;
-            my $short = $package;
-            $short =~ s/.*:([^:]+)$/$1/g;
-            inject_sub( $importing_class, $short, sub { $package });
-        }
-    };
-});
-
-gen_default_export( qw/alias_to begin/, sub {
-    my ( $exporting_class, $importing_class ) = @_;
-    sub {
-        my %pairs = @_;
-        for my $short ( keys %pairs ) {
-            my $package = $pairs{ $short };
-            eval "require $package; 1" || die $@;
-            inject_sub( $importing_class, $short, sub { $package });
-        }
+        my ( $exporting_class, $importing_class ) = @_;
+        sub {
+            for my $package (@_) {
+                eval "require $package; 1" || die $@;
+                my $short = $package;
+                $short =~ s/.*:([^:]+)$/$1/g;
+                inject_sub( $importing_class, $short, sub { $package } );
+            }
+        };
     }
-});
+);
+
+gen_default_export(
+    qw/alias_to begin/,
+    sub {
+        my ( $exporting_class, $importing_class ) = @_;
+        sub {
+            my %pairs = @_;
+            for my $short ( keys %pairs ) {
+                my $package = $pairs{$short};
+                eval "require $package; 1" || die $@;
+                inject_sub( $importing_class, $short, sub { $package } );
+            }
+            }
+    }
+);
 
 1;
 
@@ -39,9 +45,8 @@ Exodist::Util::Alias - Yet another set of aliasing tools
 
 =head1 EXPORTS
 
-All exports use L<Devel::BeginLift>. This means they are run at compile time
-rather than run-time. This is the same os if they have been wrapped in a BEGIN
-block.
+All exports are run at compile time rather than run-time, the same as
+if they have been wrapped in a BEGIN block.
 
 =over 4
 

@@ -2,32 +2,30 @@ package Exodist::Util::Sub;
 use strict;
 use warnings;
 
-use Exporter::Declare '-magic';
+use Exporter::Declare::Magic;
 use Exodist::Util::Package qw/inject_sub/;
 use Carp qw/croak/;
 use B;
+use Hash::FieldHash qw(fieldhash);
 
 default_exports qw/
     enhance_sub
-/;
+    /;
 
-our %STASH;
+fieldhash my %STASH;
 
 default_export( 'enhanced_sub', 'sublike' );
 default_export( 'esub', 'sublike', \&enhanced_sub );
 
-sub new {
+sub bless_code {
     my $class = shift;
     my %proto = @_;
-    my $code = delete $proto{sub} || croak "No code provided";
-    my $self = bless( $code, $class );
-    $STASH{ $self } = \%proto;
-    return $self;
-}
 
-sub stash {
-    my $self = shift;
-    return $STASH{ $self };
+    my $code = delete $proto{sub} || croak "No code provided";
+    bless( $code, $class );
+    $STASH{$code} = \%proto;
+
+    return;
 }
 
 sub enhanced_sub {
@@ -37,8 +35,8 @@ sub enhanced_sub {
     inject_sub( $caller, $name, $code )
         if $name;
 
-    my $self = __PACKAGE__->new(
-        sub => $code,
+    __PACKAGE__->bless_code(
+        sub      => $code,
         end_line => $line,
     );
 
@@ -48,7 +46,7 @@ sub enhanced_sub {
 sub enhance_sub {
     my ($in) = @_;
     my $ref;
-    if (ref $in and ref $in eq 'CODE' ) {
+    if ( ref $in and ref $in eq 'CODE' ) {
         $ref = $in;
     }
     else {
@@ -56,24 +54,27 @@ sub enhance_sub {
         my ( $caller, $sub ) = ( $1, $2 );
         $caller =~ s/::$// if $caller;
         $caller ||= caller;
-        $ref = \&{ "$caller\::$sub" }
+        $ref = \&{"$caller\::$sub"};
     }
-    return __PACKAGE__->new( sub => $ref );
+
+    __PACKAGE__->bless_code( sub => $ref );
+
+    return;
 }
 
 sub start_line {
     my $self = shift;
-    return B::svref_2object( $self )->START->line;
+    return B::svref_2object($self)->START->line;
 }
 
 sub end_line {
     my $self = shift;
-    return $STASH{ $self }->{end_line};
+    return $STASH{$self}->{end_line};
 }
 
 sub original_name {
     my $self = shift;
-    return B::svref_2object( $self )->GV->NAME;
+    return B::svref_2object($self)->GV->NAME;
 }
 
 sub is_anon {
@@ -83,12 +84,7 @@ sub is_anon {
 
 sub original_package {
     my $self = shift;
-    return B::svref_2object( $self )->GV->STASH->NAME;
-}
-
-sub DESTROY {
-    my $self = shift;
-    delete $STASH{ $self };
+    return B::svref_2object($self)->GV->STASH->NAME;
 }
 
 1;

@@ -6,6 +6,7 @@ lib/Exodist/Util/Loader.pm
 lib/Exodist/Util/Package.pm
 lib/Exodist/Util/Sub.pm
 MANIFEST			This list of files
+META.json
 META.yml
 README
 t/Accessors.t
